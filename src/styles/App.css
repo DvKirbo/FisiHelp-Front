@@ -1,0 +1,8 @@
+body{
+    background-color: #1d2535;
+    /* background-color: #1d1d1d; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
