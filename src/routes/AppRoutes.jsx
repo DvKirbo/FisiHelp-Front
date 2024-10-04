@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import UnayoeReserv from '../pages/UnayoeReserv';
+import UnayoeReserv from '../pages/Unayoe/UnayoeReserv';
 
 function AppRoutes() {
   return (

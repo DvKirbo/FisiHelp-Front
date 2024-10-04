@@ -1,12 +1,10 @@
-import MyCalendar from "../components/Calendar/Calendar";
-
+import MyCalendar from "../../components/Calendar/Calendar";
+import AutoPlay from "./components/Carrusel/Carrusel_unayoe";
 
 function UnayoeReserv() {
     return (
-        <>
-        <div>
-            <h1>UnayoeReserv</h1>
-        </div>
+        <>      
+        <AutoPlay />
         <MyCalendar  />
         </>
     )
