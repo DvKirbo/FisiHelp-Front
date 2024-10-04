@@ -1,17 +1,15 @@
 import './styles/App.css'
-import ResposiveAppBar from './components/Navbar/ResponsiveAppBar'
-import AutoPlay from './components/Carousel/Carousel'
-import UnayoeReserv from './pages/UnayoeReserv'
+import ResponsiveAppBar from './components/Navbar/ResponsiveAppBar'
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
 
-function App (){
-    return (
-        <>
-            <ResposiveAppBar />
-            <AutoPlay />
-            <UnayoeReserv />
-        </>
-    )
+function App() {
+  return (
+    <Router>
+      <ResponsiveAppBar />
+      <AppRoutes /> 
+    </Router>
+  );
 }
 
-
-export default App
+export default App;
