@@ -5,10 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import CardComponent from './components/card'; // Importamos el CardComponent
-import Footer from './components/Footer'; // Importamos el CardComponent
-
-
+import CardComponent from './components/card'; 
+import EventList from './components/EventList';  // <--- Aquí importamos el componente de eventos
 
 function App() {
     const cardData = [
@@ -23,6 +21,7 @@ function App() {
             description: 'Ofrecemos una amplia gama de carreras...',
         },
     ];
+
     return (
         <>
             <ResposiveAppBar />
@@ -41,11 +40,13 @@ function App() {
                             </Grid>
                         ))}
                     </Grid>
+
+                    {/* Aquí agregamos el componente de eventos */}
+                    <Box mt={5}>
+                        <EventList />
+                    </Box>
                 </Box>
             </Container>
-            <div>
-                <Footer />
-            </div>
         </>
     );
 }

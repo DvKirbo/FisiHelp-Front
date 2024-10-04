@@ -6,3 +6,11 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .App {
+    text-align: center;
+  }
