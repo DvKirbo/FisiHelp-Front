@@ -7,18 +7,14 @@ import './Footer.css';
 const Footer = () => {
   return (
     <Box component="footer" className="footer-container">
-      {/* Logo y texto institucional */}
       <Box className="footer-section" sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center', p: 4 }}>
-        {/* Contenedor para logo y texto al lado */}
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-          {/* Agregar el logo importado */}
           <Box
             component="img"
-            src={unmsmLogo} // Usamos la variable importada
+            src={unmsmLogo} 
             alt="Logo UNMSM"
-            sx={{ width: { xs: '100px', md: '150px' }, height: 'auto' }} // Ajuste de tamaño
+            sx={{ width: { xs: '100px', md: '150px' }, height: 'auto' }} 
           />
-          {/* Texto al lado del logo */}
           <Box sx={{ ml: 2, textAlign: 'start' }}>
             <Typography variant="h6" sx={{ color: 'white' }}>
               Facultad de Ingeniería de Sistemas e Informática
@@ -29,7 +25,6 @@ const Footer = () => {
           </Box>
         </Box>
 
-        {/* Menú de enlaces agrupados */}
         <Box className="footer-links" sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-around', flex: 1 }}>
           <Box sx={{ minWidth: 150, display: 'flex', flexDirection: 'column' }}>
             <Typography variant="body1" component="a" href="https://admisionpregrado.com" className="footer-link">
@@ -62,7 +57,6 @@ const Footer = () => {
           </Box>
         </Box>
 
-        {/* Redes sociales */}
         <Box sx={{ textAlign: 'center', mb: 2 }}>
           <Typography variant="body1" sx={{ color: 'gray', mb: 1 }}>
             Síguenos en:
@@ -81,10 +75,8 @@ const Footer = () => {
         </Box>
       </Box>
 
-      {/* Divider */}
       <Divider variant="middle" sx={{ backgroundColor: '#495057', mx: 7 }} />
 
-      {/* Copyright */}
       <Box sx={{ textAlign: 'center', p: 2 }}>
         <Typography variant="body1" sx={{ color: 'gray' }}>
           © 2024 Facultad de Ingeniería de Sistemas e Informática, UNMSM. Todos los derechos reservados.
