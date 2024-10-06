@@ -5,6 +5,7 @@ import ResponsiveAppBar from './components/Navbar/ResponsiveAppBar';
 import UnayoeReserv from './pages/Unayoe/UnayoeReserv';
 import HomePage from './pages/HomePage'; 
 import Footer from './components/Footer';
+import Reserva from './pages/Reserva/Reserva';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <ResponsiveAppBar />
                 <Routes>
                   <Route path="/" element={<HomePage />} />
+                  <Route path='/reservar' element={<Reserva />} />
                   <Route path="/unayoe" element={<UnayoeReserv />} />
                   <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>

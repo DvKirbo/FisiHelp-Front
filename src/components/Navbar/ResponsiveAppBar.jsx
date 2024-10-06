@@ -50,6 +50,11 @@ function ResponsiveAppBar() {
     if(page =='Inicio'){
       navigate('/');
     }
+
+    if(page == 'Reservar'){
+      navigate('/reservar')
+    }
+
     if (page === 'Unayoe') {
       navigate('/unayoe'); 
     }
