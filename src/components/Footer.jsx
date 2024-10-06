@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Divider, IconButton } from '@mui/material';
 import { Facebook, Instagram, YouTube } from '@mui/icons-material';
-import unmsmLogo from '../assets/unmsm.png'; // Importa la imagen
+import unmsmLogo from '../assets/unmsm.png'; 
 import './Footer.css';
 
 const Footer = () => {
@@ -77,30 +77,10 @@ const Footer = () => {
 
       <Divider variant="middle" sx={{ backgroundColor: '#495057', mx: 7 }} />
 
-      <Box className="footer-section" sx={{display:'flex', justifyContent:'space-around', flexWrap:'wrap', m:2}}>
-
-        <Card sx={{minWidth:150, backgroundColor:'#495057', color:'whitesmoke', m:1, p:1}} >
-          <CardActionArea>
-            <EmailIcon/>
-            <Typography variant="h6">E-MAIL</Typography>
-            <Typography variant="body1">alerta@serfor.gob.pe</Typography>
-          </CardActionArea>
-        </Card>
-        <Card sx={{minWidth:150, backgroundColor:'#495057', color:'whitesmoke', m:1,p:1}}>
-          <CardActionArea>
-            <PhoneIcon/>
-            <Typography variant="h6" >TELEFONO</Typography>
-            <Typography variant="body1">9871654321</Typography>
-          </CardActionArea>
-        </Card>
-      </Box>
-
-      <Divider variant='middle' sx={{backgroundColor:'#495057', mx:7}}/>
-      <Box>
-          <Typography variant="body1" sx={{ color: 'white', p:2 }}>
-            © 2024 FISI. Todos los derechos reservados.
-          </Typography>
-  
+      <Box sx={{ textAlign: 'center', p: 2 }}>
+        <Typography variant="body1" sx={{ color: 'gray' }}>
+          © 2024 Facultad de Ingeniería de Sistemas e Informática, UNMSM. Todos los derechos reservados.
+        </Typography>
       </Box>
     </Box>
   );
