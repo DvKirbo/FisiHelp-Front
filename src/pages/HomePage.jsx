@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/App.css'; // Para importar App.css
 import CardComponent from '../components/Card'; // Asegúrate de que la importación sea correcta
 import AutoPlay from '../components/Carousel/Carousel'; // Asegúrate de que carousel.jsx exista en la carpeta Carousel
@@ -6,7 +5,8 @@ import { Container, Box, Grid, Typography } from '@mui/material'; // Importar so
 import NewsCard from '../components/Newscard'; // Importar el nuevo componente
 import { cardData } from '../components/Card'; // Asegúrate de que cardData esté definido en card.js
 import EventCardList from '../components/EventCard'; // Importa el nuevo componente EventCardList
-function Home() {
+
+function HomePage() {
     return (
         <>
             <AutoPlay />
@@ -38,4 +38,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default HomePage;

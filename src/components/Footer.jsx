@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography, Divider, IconButton } from '@mui/material';
 import { Facebook, Instagram, YouTube } from '@mui/icons-material';
 import unmsmLogo from '../assets/unmsm.png'; // Importa la imagen

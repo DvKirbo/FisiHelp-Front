@@ -8,7 +8,6 @@ function AppRoutes() {
       <Route path="/unayoe" element={<UnayoeReserv />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-
     </Routes>
   );
 }
