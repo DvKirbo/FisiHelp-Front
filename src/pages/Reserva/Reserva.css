@@ -1,0 +1,10 @@
+.cards-reserva{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 2em;
+    margin-top: 3em;
+    margin-bottom: 4em;
+}
