@@ -116,6 +116,9 @@ function MyCalendar(){
 
 
       <Modal
+        sx={{
+            marginBottom: 32
+        }}
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
@@ -142,6 +145,7 @@ function MyCalendar(){
                 flexDirection: 'column',
                 marginTop: 20,
             }}>
+                {/* date picker */}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker className="date-time-picker" 
                         label="inicio"
@@ -152,8 +156,12 @@ function MyCalendar(){
                         
                     />
                 </LocalizationProvider>
+
             </div>
             <Button
+                sx={{
+                    marginTop: 2,
+                }}
                 onClick={()=>{
 
                     let newEvent = {
@@ -162,6 +170,7 @@ function MyCalendar(){
                         title: 'New Event'
                     }
                     setEvents([...events, newEvent])
+                    handleClose()
                     
                 }}
             >
