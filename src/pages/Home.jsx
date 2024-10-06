@@ -5,7 +5,7 @@ import AutoPlay from '../components/Carousel/Carousel'; // Asegúrate de que car
 import { Container, Box, Grid, Typography } from '@mui/material'; // Importar solo lo necesario de Material UI
 import NewsCard from '../components/Newscard'; // Importar el nuevo componente
 import { cardData } from '../components/Card'; // Asegúrate de que cardData esté definido en card.js
-import EventCardList from '../components/EventCard'; // Importa el nuevo componente EventCardList
+import EventSection from '../components/EventCard'; // Importa el nuevo componente EventCardList
 function Home() {
     return (
         <>
@@ -28,11 +28,11 @@ function Home() {
                 <Typography variant="h4" sx={{ textAlign: 'center',   marginBottom: 2, color: '#FFFFFF', fontWeight: 'bold' }}>
                     NOTICIAS
                 </Typography>
-                <EventCardList /> {/* Añade el componente EventCardList aquí */}     
+                <NewsCard/> 
                 <Typography variant="h4" sx={{ textAlign: 'center',   marginBottom: 2, color: '#FFFFFF', fontWeight: 'bold' }}>
                     EVENTOS
                 </Typography>          
-                <NewsCard/> 
+                <EventSection /> {/* Añade el componente EventCardList aquí */}     
             </Container>
         </>
     );
