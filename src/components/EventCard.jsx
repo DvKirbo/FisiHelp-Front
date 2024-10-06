@@ -42,7 +42,7 @@ const EventSection = () => {
           <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Luis Miró Quesada de la Guerra</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Universidad Nacional Mayor de SM</Typography>
                 <Button variant="contained" color="success" size="small">Ver más</Button>
               </Box>
               <Box
