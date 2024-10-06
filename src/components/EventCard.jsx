@@ -5,12 +5,13 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 
 const events = [
   { date: '05 set', title: 'Inauguración del semestre 2024-2 para los ingresantes de estudios de posgrado en la Facultad de Sistemas', image: '/src/assets/fisi2.jpg', location: 'Auditorio de la FISI', time: 'Sábado 10:00 am' },
-  { date: '07 ago', title: 'Programa de formación Ingenier', image: '/src/assets/event2.jpg', location: 'Sala 101', time: 'Lunes 9:00 am' },
+  { date: '07 ago', title: 'Programa de formación Ingenier', image: '/src/assets/event3.jpg', location: 'Sala 101', time: 'Lunes 9:00 am' },
   { date: '27 jun', title: 'Conferencias virtuales por el Día del Maestro', image: '/src/assets/event3.jpg', location: 'Virtual', time: 'Miércoles 2:00 pm' },
   { date: '13 jun', title: 'USO DE HERRAMIENTAS DE INTELIGENCIA DE ARTIFICIAL GENERATIVA', image: '/src/assets/event4.jpg', location: 'Sala 202', time: 'Jueves 1:00 pm' },
   { date: '15 oct', title: 'Taller de Desarrollo Ágil: Scrum en la Práctica', image: '/src/assets/event5.jpg', location: 'Sala 303', time: 'Viernes 11:00 am' },
   { date: '22 oct', title: 'Conferencia sobre Seguridad en Aplicaciones Web', image: '/src/assets/event6.jpg', location: 'Auditorio Principal', time: 'Sábado 3:00 pm' },
 ];
+
 
 const EventSection = () => {
   const [selectedEvent, setSelectedEvent] = useState(events[0]);
