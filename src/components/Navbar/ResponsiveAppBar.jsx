@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -21,6 +22,7 @@ import '@fontsource/roboto/700.css';
 import PestControlRodentIcon from '@mui/icons-material/PestControlRodent';
 
 const pages = ['Inicio','Reservar', 'Unayoe'];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -51,7 +53,9 @@ function ResponsiveAppBar() {
     if (page === 'Unayoe') {
       navigate('/unayoe'); 
     }
-
+    if (page === 'Reservas') {
+      navigate('/reservas'); 
+    }
   };
 
   return (

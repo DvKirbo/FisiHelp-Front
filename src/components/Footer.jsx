@@ -1,6 +1,6 @@
 import { Box, Typography, Divider, IconButton } from '@mui/material';
 import { Facebook, Instagram, YouTube } from '@mui/icons-material';
-import unmsmLogo from '../assets/unmsm.png'; // Importa la imagen
+import unmsmLogo from '../assets/unmsm.png'; 
 import './Footer.css';
 
 const Footer = () => {
