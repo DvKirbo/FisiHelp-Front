@@ -15,7 +15,6 @@ function App() {
             <>
               <ResponsiveAppBar />
               <AppRoutes />
-              <Footer />
             </>
           }/>
         </Routes>

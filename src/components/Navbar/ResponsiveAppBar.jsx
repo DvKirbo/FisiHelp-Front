@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Unayoe'];
+const pages = ['Products', 'Reservas', 'Unayoe'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -42,7 +42,9 @@ function ResponsiveAppBar() {
     if (page === 'Unayoe') {
       navigate('/unayoe'); 
     }
-
+    if (page === 'Reservas') {
+      navigate('/reservas'); 
+    }
   };
 
   return (

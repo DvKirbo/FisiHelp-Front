@@ -5,7 +5,7 @@ function UnayoeReserv() {
     return (
         <>      
         <AutoPlay />
-        <MyCalendar  />
+        
         </>
     )
 }
