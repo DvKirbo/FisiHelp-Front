@@ -14,7 +14,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Reservas', 'Unayoe'];
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import PestControlRodentIcon from '@mui/icons-material/PestControlRodent';
+
+const pages = ['Inicio','Reservar', 'Unayoe'];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -39,6 +47,9 @@ function ResponsiveAppBar() {
   };
 
   const handleNavigate = (page) => {
+    if(page =='Inicio'){
+      navigate('/');
+    }
     if (page === 'Unayoe') {
       navigate('/unayoe'); 
     }
@@ -51,12 +62,14 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: '#002855' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <PestControlRodentIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            onClick={()=>{
+              navigate('/')
+            }}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -104,8 +117,8 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+        
+          <PestControlRodentIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -139,8 +152,18 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={()=>{
+                //handleOpenNavMenu
+                navigate('/login')
+              }} sx={{ p: 0 }}>
+                
+                <Button>
+                  Iniciar Sesion
+                </Button>
+                
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+ */}
+
               </IconButton>
             </Tooltip>
             <Menu
