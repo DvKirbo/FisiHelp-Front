@@ -1,9 +1,11 @@
-import './styles/App.css';
-import ResponsiveAppBar from './components/Navbar/ResponsiveAppBar';
+import './styles/App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import AppRoutes from './routes/AppRoutes';
 import Login from './components/login/Login'; 
-import Footer from './components/Footer'; 
+import ResponsiveAppBar from './components/Navbar/ResponsiveAppBar';
+import UnayoeReserv from './pages/Unayoe/UnayoeReserv';
+import HomePage from './pages/HomePage'; 
+import Footer from './components/Footer';
+import Reserva from './pages/Reserva/Reserva';
 
 function App() {
   return (
@@ -14,8 +16,14 @@ function App() {
           <Route path='/*' element={
             <>
               <ResponsiveAppBar />
-              <AppRoutes />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path='/reservar' element={<Reserva />} />
+                  <Route path="/unayoe" element={<UnayoeReserv />} />
+                  <Route path="*" element={<h1>404 Not Found</h1>} />
+                </Routes>
               <Footer />
+
             </>
           }/>
         </Routes>
