@@ -4,6 +4,8 @@ import InformationCard from "./components/InformationCard/InformationCard";
 import LayoutUnayoe from "./components/layout/layoutUnayoe";
 import './UnayoeReserv.css'
 
+
+
 function UnayoeReserv() {
     return (
 
@@ -26,7 +28,13 @@ function UnayoeReserv() {
             >Reservar</Button>
             </div>
             <div id="wasa">
-            <MyCalendar />
+            <MyCalendar saveEvent={()=>{
+                console.log("Evento guardado")
+            }}
+            getEvent={()=>{
+                console.log("Evento obtenido")
+            }}
+            />
             </div>
 
         </>
