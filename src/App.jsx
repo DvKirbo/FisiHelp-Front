@@ -6,6 +6,7 @@ import UnayoeReserv from './pages/Unayoe/UnayoeReserv';
 import HomePage from './pages/HomePage'; 
 import Footer from './components/Footer';
 import Reserva from './pages/Reserva/Reserva';
+import Chatbot from './components/Chatbot/Chatbot';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                   <Route path="/unayoe" element={<UnayoeReserv />} />
                   <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>
+              <Chatbot />
               <Footer />
 
             </>
