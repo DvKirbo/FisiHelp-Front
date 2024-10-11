@@ -29,7 +29,7 @@ function AutoPlay() {
   return (
     <Box>
       <Box sx={{position:'absolute', height:"70%", width:{xs:'80%', md:'50%'},mt:'70px', py:'5%',px:'10%', zIndex:2, textAlign:{xs:'center', md:'start'}, alignContent:'center'}}>
-        <Typography color={'white'} sx={{fontSize:'6vw', fontWeight: 'bold', width:'100%', lineHeight:1.1}}>Reserva</Typography>
+        <Typography color={'white'} sx={{fontSize:'6vw', fontWeight: 'bold', width:'100%', lineHeight:1.1}}>RESERVA</Typography>
         <Typography color={'white'} sx={{display:{xs:'none', sm:'flex'}, fontSize:'1.3vw', width:{xs:'100%', md:'80%'}, mt:3}}>
             Cualquier espacio de la FISI
         </Typography>
@@ -39,7 +39,7 @@ function AutoPlay() {
       zIndex: 1,
       background: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(50, 50, 50, 0) 80%)',
       width: '80%',
-      height:'100%'
+      height:'95%'
       }}>
       </Box>
       <Box className="slider-container" sx={{position:'relative'}} data-testid="carousel">  

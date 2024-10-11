@@ -40,7 +40,7 @@ function AutoPlay() {
       zIndex: 1,
       background: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(50, 50, 50, 0) 80%)',
       width: '80%',
-      height:'100%'
+      height:'95%'
       }}>
       </Box>
       <Box className="slider-container" sx={{position:'relative'}} data-testid="carousel">  
