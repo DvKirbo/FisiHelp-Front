@@ -9,7 +9,10 @@ import Backdrop from '@mui/material/Backdrop';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import "./Calendar.css"
+import { useEffect } from 'react';
 //import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+
 
 dayjs.locale('es');
 const localizer = dayjsLocalizer(dayjs);
@@ -43,7 +46,7 @@ const style = {
   };
   
 // eslint-disable-next-line react/prop-types
-function MyCalendar(){
+function MyCalendar({getEvent, saveEvent}){
 
     const [events, setEvents] = useState([{
         start: dayjs().toDate(),
@@ -54,6 +57,12 @@ function MyCalendar(){
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    useEffect(()=>{
+        //fetch a data
+        //llenar eventos
+        getEvent();
+    },[])
 
     /* Para implementar con el backend
     useEffect(()=>{
@@ -170,6 +179,7 @@ function MyCalendar(){
                         title: 'New Event'
                     }
                     setEvents([...events, newEvent])
+                    saveEvent()
                     handleClose()
                     
                 }}
