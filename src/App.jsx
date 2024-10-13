@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import Reserva from './pages/Reserva/Reserva';
 import Chatbot from './components/Chatbot/Chatbot';
-
+import Rectis from './pages/Rectis/Rectificaciones';
 function App() {
   return (
     <Router>
@@ -21,6 +21,8 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path='/reservar' element={<Reserva />} />
                   <Route path="/unayoe" element={<UnayoeReserv />} />
+                  <Route path="/rectificaciones" element={<Rectis />} />
+
                   <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>
               <Chatbot />
