@@ -3,7 +3,6 @@ import { Container, Box, Grid, Typography } from '@mui/material'; // Importar so
 import AutoPlay from '../components/Carousel/Carousel'; // Asegúrate de que carousel.jsx exista en la carpeta Carousel
 import CardComponent from '../components/Card'; // Asegúrate de que la importación sea correcta
 import NewsCard from '../components/Newscard'; // Importar el nuevo componente
-import { cardData } from '../components/Card'; // Asegúrate de que cardData esté definido en card.js
 import EventCardList from '../components/EventCard'; // Importa el nuevo componente EventCardList
 
 function HomePage() {
@@ -11,20 +10,7 @@ function HomePage() {
         <>
             <AutoPlay />
             <Container maxWidth="lg">
-                <Box my={4}>
-                    <Grid container spacing={4}>
-                        {cardData.map((item, index) => (
-                            <Grid item key={index} xs={12} sm={6} md={6}>
-                                <CardComponent
-                                    image={item.image}       
-                                    title={item.title}       
-                                    description={item.description} 
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Box>
-
+                <CardComponent />   
                 <Typography variant="h4" sx={{ textAlign: 'center', marginBottom: 2,fontWeight: 'bold' }}>
                     NOTICIAS
                 </Typography>

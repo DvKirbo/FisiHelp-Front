@@ -1,46 +1,88 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Card, CardActionArea, CardMedia, CardContent, Typography, Grid, Box, Container } from '@mui/material';
+import { Link } from 'react-router-dom'; // Importa Link de React Router
 
-// Definición de los datos de las tarjetas
-export const cardData = [
-    {
-        image: 'src/assets/fisi.png', // Cambia esto por la URL de la imagen
-        title: 'Quienes somos',
-        description: 'Somos fisianos',
-    },
-    {
-        image: 'src/assets/fisi2.jpg', // Cambia esto por la URL de la imagen
-        title: 'Nuestras carreras',
-        description: 'Tenemos 3 carreras lleve casero',
-    },
-    // Agrega más objetos según necesites
-];
-
-const CardComponent = ({ image, title, description }) => {
+const CardComponent = () => {
     return (
-        <Card sx={{ maxWidth: 545 }}>
-            <CardMedia
-                sx={{ height: 140 }}
-                image={image} // Imagen pasada como prop
-                title={title} // Título pasado como prop
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div"sx={{ fontWeight: 'bold' }} >
-                    {title} {/* Título dinámico */}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {description} {/* Descripción dinámica */}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Más información</Button>
-            </CardActions>
-        </Card>
+        <Container maxWidth="lg">
+            <Box my={4}>
+                <Grid container spacing={4}>
+                    {/* Primera Card - Enlace a la página "Quiénes somos" */}
+                    <Grid item xs={12} sm={6} md={6}>
+                        <Card 
+                            sx={{ 
+                                borderRadius: '16px', 
+                                boxShadow: '0 8px 16px rgba(0,0,0,0.1)', 
+                                transition: 'transform 0.3s ease',
+                                '&:hover': {
+                                    transform: 'translateY(-10px)',
+                                    boxShadow: '0 12px 24px rgba(0,0,0,0.15)',
+                                },
+                            }}
+                        >
+                            <CardActionArea component={Link} to="/about-us"> {/* Link interno con React Router */}
+                                <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image="src/assets/fisi.png"  // Cambia esto a la ruta de tu imagen
+                                    alt="Quienes somos"
+                                    sx={{ borderRadius: '16px 16px 0 0' }} // Rounded corners on top
+                                />
+                                <CardContent sx={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
+                                    <Typography 
+                                        variant="h6" 
+                                        component="div" 
+                                        sx={{ fontWeight: 'bold', marginBottom: 1 }}
+                                    >
+                                        Quiénes somos
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Somos fisianos.
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+
+                    {/* Segunda Card - Enlace a la página "Nuestras carreras" */}
+                    <Grid item xs={12} sm={6} md={6}>
+                        <Card 
+                            sx={{ 
+                                borderRadius: '16px', 
+                                boxShadow: '0 8px 16px rgba(0,0,0,0.1)', 
+                                transition: 'transform 0.3s ease',
+                                '&:hover': {
+                                    transform: 'translateY(-10px)',
+                                    boxShadow: '0 12px 24px rgba(0,0,0,0.15)',
+                                },
+                            }}
+                        >
+                            <CardActionArea component={Link} to="/careers"> {/* Link interno con React Router */}
+                                <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image="src/assets/fisi2.jpg"  // Cambia esto a la ruta de tu imagen
+                                    alt="Nuestras carreras"
+                                    sx={{ borderRadius: '16px 16px 0 0' }}
+                                />
+                                <CardContent sx={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
+                                    <Typography 
+                                        variant="h6" 
+                                        component="div" 
+                                        sx={{ fontWeight: 'bold', marginBottom: 1 }}
+                                    >
+                                        Nuestras carreras
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Tenemos 3 carreras, ¡lleve casero!
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Box>
+        </Container>
     );
 };
 

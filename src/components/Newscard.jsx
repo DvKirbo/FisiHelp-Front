@@ -1,10 +1,5 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import CardActions from '@mui/material/CardActions';
-import Box from '@mui/material/Box';
+import React from 'react';
+import { Card, CardContent, CardMedia, Typography, Button, CardActions, Box } from '@mui/material';
 import Slider from 'react-slick'; 
 
 const newsData = [
@@ -17,55 +12,55 @@ const newsData = [
     {
         "title": "Nueva Tecnología en Software",
         "description": "Explora las últimas tendencias en el desarrollo de software para el 2024.",
-        "image": "src/assets/tech_news.jpg",
+        "image": "https://isil.pe/blog/wp-content/uploads/2023/10/mejores-herramientas-desarrollo-software.png",
         "link": "/tecnologia"
     },
     {
         "title": "Evento de Networking",
         "description": "Únete a nosotros en un evento exclusivo de networking para estudiantes de ingeniería.",
-        "image": "src/assets/networking_event.jpg",
+        "image": "https://www.supportproevent.com/wp-content/uploads/2019/06/como-organizar-un-evento-de-networking-profesional-1.jpg",
         "link": "/networking"
     },
     {
         "title": "Conferencia sobre IA",
         "description": "Asiste a la conferencia sobre inteligencia artificial y sus aplicaciones en el mundo moderno.",
-        "image": "src/assets/ai_conference.jpg",
+        "image": "https://informacionlogistica.com/wp-content/uploads/2022/10/aplicacion-de-la-inteligencia-artificial-para-el-financiamiento-automotriz.jpg",
         "link": "/ai-conference"
     },
     {
         "title": "Hackathon Nacional",
         "description": "Participa en el hackathon nacional y muestra tus habilidades de programación.",
-        "image": "src/assets/hackathon.jpg",
+        "image": "https://hub.laboratoria.la/hubfs/HUB%20COVER%20%2822%29-2.png",
         "link": "/hackathon"
     },
     {
         "title": "Taller de Desarrollo Web",
         "description": "Aprende las últimas técnicas de desarrollo web en este taller interactivo.",
-        "image": "src/assets/web_development.jpg",
+        "image": "https://img-b.udemycdn.com/course/750x422/980450_7fc0_4.jpg",
         "link": "/web-development"
     },
     {
         "title": "Seminario sobre Seguridad Informática",
         "description": "Descubre las mejores prácticas para proteger tus aplicaciones en este seminario especializado.",
-        "image": "src/assets/cyber_security.jpg",
+        "image": "https://directivosygerentes.es/wp-content/uploads/2023/02/seguridad-informatica-empresas.jpg",
         "link": "/cyber-security"
     },
     {
         "title": "Feria de Empleo",
         "description": "Conoce a las mejores empresas del sector tecnológico en nuestra feria de empleo.",
-        "image": "src/assets/job_fair.jpg",
+        "image": "https://cdn.www.gob.pe/uploads/document/file/6222229/941395-1.png",
         "link": "/job-fair"
     },
     {
         "title": "Ciclo de Conferencias de Tecnología",
         "description": "Un ciclo de conferencias donde expertos del sector compartirán sus conocimientos.",
-        "image": "src/assets/tech_talks.jpg",
+        "image": "https://sg.com.mx/sites/default/files/inline-images/07.jpg",
         "link": "/tech-talks"
     },
     {
         "title": "Bootcamp de Programación",
         "description": "Intensivo bootcamp para aprender a programar en diversas tecnologías.",
-        "image": "src/assets/programming_bootcamp.jpg",
+        "image": "https://www.epitech-it.es/wp-content/uploads/2021/11/bootcamp-1.png",
         "link": "/programming-bootcamp"
     }
 ];
@@ -78,7 +73,7 @@ const NewsCard = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 1500,
         pauseOnHover: true, 
     };
 
@@ -125,7 +120,9 @@ const NewsCard = () => {
                                         >
                                             {news.title}
                                         </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}> 
+                                        {/* Agregar la descripción aquí */}
+                                        <Typography variant="body2" sx={{ color: 'black', mb: 2 ,fontSize: '20px'}}>
+                                            {news.description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions sx={{ paddingTop: 0, justifyContent: 'center' }}> 
@@ -133,7 +130,7 @@ const NewsCard = () => {
                                             size="small" 
                                             variant="contained" 
                                             color="primary" 
-                                            sx={{ borderRadius: 16, fontWeight: 'bold', padding: '10px', paddingTop:'8px',paddingBottom:'8x' ,backgroundColor: '#C32148'}} // Aumentar el radio de los bordes
+                                            sx={{ borderRadius: 16, fontWeight: 'bold', padding: '10px', paddingTop: '8px', paddingBottom: '8x', backgroundColor: '#C32148' }} // Aumentar el radio de los bordes
                                             onClick={() => window.location.href = news.link} 
                                         >
                                             Leer más

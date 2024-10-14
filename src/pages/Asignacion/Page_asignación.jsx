@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Box } from '@mui/material';
 
-import image1 from './assets/logo.jpeg'; 
+import image1 from '/home/Ric/FisiHelp-Front/src/assets/logofisi.png';
 
 export default function AsignacionesPage() {
   const navigate = useNavigate();
@@ -18,13 +18,21 @@ export default function AsignacionesPage() {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        height: 'calc(100vh - 64px)', 
+        padding: '20px',
+        overflow: 'hidden', 
       }}
     >
       <img
         src={image1} 
         alt="Logo"
-        style={{ maxWidth: '100%', height: 'auto', marginBottom: '20px' }}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+          maxHeight: 'calc(100% - 60px)', 
+          objectFit: 'contain',
+          marginBottom: '20px',
+        }}
       />
       <Button
         variant="contained"
