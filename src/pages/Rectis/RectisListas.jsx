@@ -21,42 +21,6 @@ import TextField from '@mui/material/TextField';
 
 // Datos JSON
 const initialData = [
-  {
-    id: 1,
-    apellido: "García",
-    nombre: "Juan",
-    code: 1001,
-    promedio: 15.75,
-    cursoSalida: "Curso 3",
-    cursoEntrada: "Curso 4",
-    carrera: "Ingeniería de Software",
-    fecha: "2024-10-15T10:00:00Z",
-    tipo: "Entrada"
-  },
-  {
-    id: 2,
-    apellido: "Martínez",
-    nombre: "Lucía",
-    code: 1002,
-    promedio: 18.90,
-    cursoSalida: "Curso 2",
-    cursoEntrada: "Curso 3",
-    carrera: "Ingeniería de Sistemas",
-    fecha: "2024-09-07T09:00:00Z",
-    tipo: "Cambio"
-  },
-  {
-    id: 3,
-    apellido: "Fernández",
-    nombre: "Carlos",
-    code: 1003,
-    promedio: 17.45,
-    cursoSalida: "Curso 1",
-    cursoEntrada: "Curso 2",
-    carrera: "Ingeniería de Software",
-    fecha: "2024-06-27T14:00:00Z",
-    tipo: "Salida"
-  }
 ];
 
 const columns = [
@@ -161,20 +125,6 @@ function rowContent(_index, row, handleOpenDialog, handleReject) {
       <TableCell sx={{ padding: '10px' }}>
         <Button
           variant="contained"
-          sx={{ marginRight: 1, backgroundColor: '#4caf50' }}
-        >
-          Aprobar
-        </Button>
-        <Button
-          variant="contained"
-          color="error"
-          sx={{ marginRight: 1 }}
-          onClick={() => handleReject(row.id)}
-        >
-          Rechazar
-        </Button>
-        <Button
-          variant="contained"
           onClick={() => handleOpenDialog(row.id)}
           sx={{ backgroundColor: '#FFA500' }}
         >
@@ -185,7 +135,7 @@ function rowContent(_index, row, handleOpenDialog, handleReject) {
   );
 }
 
-export default function Rectificaciones() {
+export default function RectisListas() {
   const [data, setData] = useState(initialData); // Usamos los datos iniciales
   const [searchQuery, setSearchQuery] = useState('');
   const [orderBy, setOrderBy] = useState('fecha');

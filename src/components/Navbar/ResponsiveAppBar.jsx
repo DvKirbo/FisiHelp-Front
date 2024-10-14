@@ -157,19 +157,11 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={()=>{
-                //handleOpenNavMenu
-                navigate('/login')
-              }} sx={{ p: 0 }}>
-                
-                <Button>
-                  Iniciar Sesion
-                </Button>
-                
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
- */}
-
-              </IconButton>
+            <Button onClick={() => {
+              navigate('/login');
+            }} sx={{ p: 0, color: 'white' }}>
+              Iniciar Sesión
+            </Button>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
