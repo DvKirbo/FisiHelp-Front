@@ -1,4 +1,4 @@
-.selector_container{
+.box_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -6,6 +6,8 @@
     padding: 6;
     margin-top: 20px;
     margin-bottom: 20px;
-    gap: 10em
+    
 }
-
+.clasroom_container{
+    margin-bottom: 2em
+}
