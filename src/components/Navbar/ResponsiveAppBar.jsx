@@ -8,27 +8,18 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import PestControlRodentIcon from '@mui/icons-material/PestControlRodent';
 
-const pages = ['Inicio','Reservar', 'Unayoe', 'Asignaciones'];
-
+const pages = ['Inicio', 'Reservar', 'Unayoe', 'Asignaciones'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate(); // Hook para navegación
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,44 +38,37 @@ function ResponsiveAppBar() {
   };
 
   const handleNavigate = (page) => {
-    if(page =='Inicio'){
+    if (page === 'Inicio') {
       navigate('/');
     }
-
-    if(page == 'Reservar'){
-      navigate('/reservar')
+    if (page === 'Reservar') {
+      navigate('/reservar');
     }
-
     if (page === 'Unayoe') {
-      navigate('/unayoe'); 
-    }
-    if (page === 'Reservas') {
-      navigate('/reservas'); 
+      navigate('/unayoe');
     }
     if (page === 'Asignaciones') {
-      navigate('/asignaciones'); 
+      navigate('/asignaciones');
     }
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#002855' }}>
+    <AppBar position="static" sx={{ backgroundColor: '#002855', boxShadow: 'none', padding: '0 20px' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <PestControlRodentIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <PestControlRodentIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'white' }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            onClick={()=>{
-              navigate('/')
-            }}
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'roboto',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white',
               textDecoration: 'none',
             }}
           >
@@ -125,13 +109,12 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-        
-          <PestControlRodentIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
+          <PestControlRodentIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, color: 'white' }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -139,7 +122,7 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white',
               textDecoration: 'none',
             }}
           >
@@ -151,7 +134,7 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={() => handleNavigate(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', '&:hover': { backgroundColor: '#003b5c' } }}
               >
                 {page}
               </Button>
@@ -160,11 +143,9 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-            <Button onClick={() => {
-              navigate('/login');
-            }} sx={{ p: 0, color: 'white' }}>
-              Iniciar Sesión
-            </Button>
+              <Button onClick={() => navigate('/login')} sx={{ p: 0, color: 'white' }}>
+                Iniciar Sesión
+              </Button>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}

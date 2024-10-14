@@ -29,7 +29,6 @@ const initialData = [
     promedio: 15.75,
     cursoSalida: "Curso 3",
     cursoEntrada: "Curso 4",
-    carrera: "Ingeniería de Software",
     fecha: "2024-10-15T10:00:00Z",
     tipo: "Entrada"
   },
@@ -41,7 +40,6 @@ const initialData = [
     promedio: 18.90,
     cursoSalida: "Curso 2",
     cursoEntrada: "Curso 3",
-    carrera: "Ingeniería de Sistemas",
     fecha: "2024-09-07T09:00:00Z",
     tipo: "Cambio"
   },
@@ -53,7 +51,6 @@ const initialData = [
     promedio: 17.45,
     cursoSalida: "Curso 1",
     cursoEntrada: "Curso 2",
-    carrera: "Ingeniería de Software",
     fecha: "2024-06-27T14:00:00Z",
     tipo: "Salida"
   }
@@ -61,12 +58,12 @@ const initialData = [
 
 const columns = [
   {
-    width: 110, 
+    width: 100, 
     label: 'Apellidos',
     dataKey: 'apellido',
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Nombre',
     dataKey: 'nombre',
   },
@@ -77,28 +74,23 @@ const columns = [
     numeric: true,
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Promedio',
     dataKey: 'promedio',
     numeric: true,
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Curso del que sale',
     dataKey: 'cursoSalida',
   },
   {
-    width: 110,
+    width: 100,
     label: 'Curso al que entra',
     dataKey: 'cursoEntrada',
   },
   {
-    width: 120, 
-    label: 'Carrera',
-    dataKey: 'carrera',
-  },
-  {
-    width: 130, 
+    width: 100, 
     label: 'Fecha y Hora ',
     dataKey: 'fecha',
   },
@@ -108,7 +100,7 @@ const columns = [
     dataKey: 'tipo',
   },
   {
-    width: 250,
+    width: 300,
     label: 'Acciones',
     dataKey: 'actions',
   },
@@ -116,10 +108,15 @@ const columns = [
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
-    <TableContainer component={Paper} {...props} ref={ref} />
+    <TableContainer
+    component={Paper}
+    {...props}
+    ref={ref}
+    sx={{ height: '60vh', width: '80%' }} 
+  />
   )),
   Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed', minWidth: 700 }} />
+    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed', minWidth: 550 }} />
   ),
   TableHead: React.forwardRef((props, ref) => <TableHead {...props} ref={ref} />),
   TableRow,
@@ -186,7 +183,7 @@ function rowContent(_index, row, handleOpenDialog, handleReject) {
 }
 
 export default function Rectificaciones() {
-  const [data, setData] = useState(initialData); // Usamos los datos iniciales
+  const [data, setData] = useState(initialData); 
   const [searchQuery, setSearchQuery] = useState('');
   const [orderBy, setOrderBy] = useState('fecha');
   const [orderDirection, setOrderDirection] = useState('desc');
@@ -208,7 +205,7 @@ export default function Rectificaciones() {
   };
 
   const handleReject = (id) => {
-    setData(data.filter((row) => row.id !== id)); // Elimina el evento rechazado
+    setData(data.filter((row) => row.id !== id)); 
   };
 
   const filteredRows = useMemo(() => {
@@ -218,7 +215,6 @@ export default function Rectificaciones() {
       const matchesSearch =
         row.apellido.toLowerCase().includes(search) ||
         row.nombre.toLowerCase().includes(search) ||
-        row.carrera.toLowerCase().includes(search) ||
         new Date(row.fecha).toLocaleString().includes(search);
 
       const matchesTipo =
@@ -231,9 +227,7 @@ export default function Rectificaciones() {
   const sortedRows = useMemo(() => {
     let sorted = [...filteredRows];
     
-    if (orderBy === 'carrera') {
-      sorted = sorted.sort((a, b) => a.carrera.localeCompare(b.carrera));
-    } else if (orderBy === 'cursoEntrada') {
+    if (orderBy === 'cursoEntrada') {
       sorted = sorted.sort((a, b) => a.cursoEntrada.localeCompare(b.cursoEntrada));
     } else if (orderBy === 'cursoSalida') {
       sorted = sorted.sort((a, b) => a.cursoSalida.localeCompare(b.cursoSalida));
@@ -283,8 +277,7 @@ export default function Rectificaciones() {
           variant="outlined"
           sx={{ minWidth: 180 }}
         >
-          <MenuItem value="fecha">Orden por Fecha (Defecto)</MenuItem>
-          <MenuItem value="carrera">Carrera</MenuItem>
+                    <MenuItem value="fecha">Orden por Fecha (Defecto)</MenuItem>
           <MenuItem value="cursoEntrada">Curso de Entrada</MenuItem>
           <MenuItem value="cursoSalida">Curso de Salida</MenuItem>
           <MenuItem value="promedio">Promedio</MenuItem>

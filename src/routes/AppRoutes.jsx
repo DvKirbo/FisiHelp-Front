@@ -8,6 +8,7 @@ import Forms from '../pages/Formulario/Formulario';
 import RectisListas from '../pages/Rectis/RectisListas';
 import Asignaciones from "../pages/Asignacion/Asignaciones";
 import Asignaciones_page from "../pages/Asignacion/Page_asignación";
+import Wasant from '../pages/NotFound/wasant';
 function AppRoutes() {
   return (
     <Routes>
@@ -21,7 +22,7 @@ function AppRoutes() {
       <Route path="/rectis-listas" element={<RectisListas />} />
       <Route path="/asignaciones/tabla" element={<Asignaciones/>} />
       <Route path="/asignaciones" element={<Asignaciones_page/>} />
-
+      <Route path="*" element={<Wasant/>} />
 
     </Routes>
   );

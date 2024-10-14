@@ -15,6 +15,10 @@ import Canchita from './pages/Canchita/Canchita';
 import Forms from './pages/Formulario/Formulario';
 import RectisListas from './pages/Rectis/RectisListas';
 import Asignaciones_page from "./pages/Asignacion/Page_asignación";
+import Wasant from './pages/NotFound/wasant';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 function App() {
   return (
     <Router>
@@ -37,12 +41,12 @@ function App() {
 
                   <Route path="/asignaciones" element={<Asignaciones_page/>} />
                   <Route path="/asignaciones/tabla" element={<Asignaciones/>} />
-                  <Route path="*" element={<h1>404 Not Found</h1>} />
+                  <Route path="*" element={<Wasant/>} />
                 </Routes>
               <Chatbot />
               <Footer />
 
-            </>
+            </> 
           }/>
         </Routes>
       </div>

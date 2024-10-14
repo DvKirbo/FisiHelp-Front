@@ -25,12 +25,12 @@ const initialData = [
 
 const columns = [
   {
-    width: 110, 
+    width: 100, 
     label: 'Apellidos',
     dataKey: 'apellido',
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Nombre',
     dataKey: 'nombre',
   },
@@ -41,28 +41,23 @@ const columns = [
     numeric: true,
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Promedio',
     dataKey: 'promedio',
     numeric: true,
   },
   {
-    width: 110, 
+    width: 100, 
     label: 'Curso del que sale',
     dataKey: 'cursoSalida',
   },
   {
-    width: 110,
+    width: 100,
     label: 'Curso al que entra',
     dataKey: 'cursoEntrada',
   },
   {
-    width: 120, 
-    label: 'Carrera',
-    dataKey: 'carrera',
-  },
-  {
-    width: 130, 
+    width: 100, 
     label: 'Fecha y Hora ',
     dataKey: 'fecha',
   },
@@ -72,7 +67,7 @@ const columns = [
     dataKey: 'tipo',
   },
   {
-    width: 250,
+    width: 300,
     label: 'Acciones',
     dataKey: 'actions',
   },
@@ -80,10 +75,15 @@ const columns = [
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
-    <TableContainer component={Paper} {...props} ref={ref} />
+    <TableContainer
+    component={Paper}
+    {...props}
+    ref={ref}
+    sx={{ height: '60vh', width: '80%' }} 
+  />
   )),
   Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed', minWidth: 700 }} />
+    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed', minWidth: 550 }} />
   ),
   TableHead: React.forwardRef((props, ref) => <TableHead {...props} ref={ref} />),
   TableRow,
@@ -136,7 +136,7 @@ function rowContent(_index, row, handleOpenDialog, handleReject) {
 }
 
 export default function RectisListas() {
-  const [data, setData] = useState(initialData); // Usamos los datos iniciales
+  const [data, setData] = useState(initialData); 
   const [searchQuery, setSearchQuery] = useState('');
   const [orderBy, setOrderBy] = useState('fecha');
   const [orderDirection, setOrderDirection] = useState('desc');
@@ -158,7 +158,7 @@ export default function RectisListas() {
   };
 
   const handleReject = (id) => {
-    setData(data.filter((row) => row.id !== id)); // Elimina el evento rechazado
+    setData(data.filter((row) => row.id !== id)); 
   };
 
   const filteredRows = useMemo(() => {
@@ -168,7 +168,6 @@ export default function RectisListas() {
       const matchesSearch =
         row.apellido.toLowerCase().includes(search) ||
         row.nombre.toLowerCase().includes(search) ||
-        row.carrera.toLowerCase().includes(search) ||
         new Date(row.fecha).toLocaleString().includes(search);
 
       const matchesTipo =
@@ -181,9 +180,7 @@ export default function RectisListas() {
   const sortedRows = useMemo(() => {
     let sorted = [...filteredRows];
     
-    if (orderBy === 'carrera') {
-      sorted = sorted.sort((a, b) => a.carrera.localeCompare(b.carrera));
-    } else if (orderBy === 'cursoEntrada') {
+    if (orderBy === 'cursoEntrada') {
       sorted = sorted.sort((a, b) => a.cursoEntrada.localeCompare(b.cursoEntrada));
     } else if (orderBy === 'cursoSalida') {
       sorted = sorted.sort((a, b) => a.cursoSalida.localeCompare(b.cursoSalida));
@@ -233,8 +230,7 @@ export default function RectisListas() {
           variant="outlined"
           sx={{ minWidth: 180 }}
         >
-          <MenuItem value="fecha">Orden por Fecha (Defecto)</MenuItem>
-          <MenuItem value="carrera">Carrera</MenuItem>
+                    <MenuItem value="fecha">Orden por Fecha (Defecto)</MenuItem>
           <MenuItem value="cursoEntrada">Curso de Entrada</MenuItem>
           <MenuItem value="cursoSalida">Curso de Salida</MenuItem>
           <MenuItem value="promedio">Promedio</MenuItem>
