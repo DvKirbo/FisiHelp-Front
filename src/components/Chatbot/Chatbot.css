@@ -1,27 +1,10 @@
-.Chatbot-container{
+.logo {
+    margin: 20px;
+    height: 60px;
+    width: 60px;
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 400px;
-    height: 500px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px 0 0 0;
-    display: flex;
-    flex-direction: column;
-}
-.logo{
-    width: 100px;
-    height: 100px;
-    margin: 20px;
-    margin-left: auto;
-    border-radius: 50%;
-    background-color: #f1f1f1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: #333;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it is on top of other elements */
+    cursor: pointer;
 }

@@ -1,10 +1,6 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,42 +9,38 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import { useNavigate } from 'react-router-dom';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
-const url = "https://innovatech-0rui.onrender.com";
-const loginUrl = url + '/auth/login';
-const loginMod = url + '/auth/login-moderator';
+import validate from '../../assets/validate.jpg';
 
-export default function Login() {
-    const [isMod, setIsMod] = useState(false);
+
+
+export default function Validate() {
+    const navigate = useNavigate();
     const [openAlert, setOpenAlert] = useState(false);
+    const [error, setError] = useState(false);
+
     const [codigo, setCodigo] = useState(""); // Cambiar email a codigo
     const [dni, setDni] = useState(""); // Cambiar password a dni
-    const [error, setError] = useState(false);
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
-        window.location.href = '/';
-    }
-
-    const handleCheckboxChange = (event) => {
-        setIsMod(event.target.checked);
+        navigate('/login');
     };
 
     const handleErrorAlert = () => {
-        setOpenAlert(false);
-    }
+        setError(false);
+    };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const urlToUse = isMod ? loginMod : loginUrl;
 
-        fetch(urlToUse, {
+        fetch(import.meta.env.VITE_VALIDATE_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -57,32 +49,24 @@ export default function Login() {
                 codigo: codigo ? codigo : "No ingresado", // Cambiar email a codigo
                 dni: dni ? dni : "No ingresado" // Cambiar password a dni
             })
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            if (data.status === 200) {
+        }).then(res =>{
+            console.log(res.status)
+            if (res.status === 200) {
                 setError(false);
-                const user = {
-                    id: data.user.id,
-                    nombre: data.user.nombre,
-                    codigo: data.user.codigo, // Cambiar correo a codigo
-                    token: data.token
-                }
-                window.localStorage.setItem(isMod ? 'UW-mod-logged-session' : 'UW-logged-session', JSON.stringify(user));
-                if (isMod) {
-                    window.location.href = '/moderador';
-                } else {
-                    setOpenAlert(true);
-                }
             } else {
                 setError(true);
-                setOpenAlert(true);
-                setCodigo(""); // Reiniciar codigo
-                setDni(""); // Reiniciar dni
             }
-        }).catch(err => {
-            console.log(err);
-        });
+            setOpenAlert(true);
+            res.json()
+        } 
+        ).then(data => {
+            console.log(data)
+        }).catch(err =>{
+            console.log(err)
+            setError(true);
+        })
     };
+
 
     const handleInputChange = (e, setter) => {
         const value = e.target.value;
@@ -92,8 +76,11 @@ export default function Login() {
         }
     };
 
+
     return (
         <Grid container component="main" sx={{ height: { md: '100vh', xs: '100vh' } }}>
+            
+            
             <Dialog
                 open={openAlert}
                 onClose={error ? handleErrorAlert : handleCloseAlert}
@@ -104,11 +91,17 @@ export default function Login() {
                 <DialogTitle id="alert-dialog-title">{error ? message[1] : message[0]}</DialogTitle>
 
                 <DialogActions>
-                    <Button onClick={error ? handleErrorAlert : handleCloseAlert} color="primary" autoFocus>
+                    <Button  
+                    onClick={error ? handleErrorAlert : handleCloseAlert}
+                    color="primary" autoFocus>
                         Continuar
                     </Button>
                 </DialogActions>
             </Dialog>
+
+
+
+
 
             <CssBaseline />
             <Grid
@@ -117,7 +110,7 @@ export default function Login() {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/UNMSM_Facultad_de_Ingenier%C3%ADa_de_Sistemas_e_Inform%C3%A1tica_2019_-_Vista_lateral.jpg/800px-UNMSM_Facultad_de_Ingenier%C3%ADa_de_Sistemas_e_Inform%C3%A1tica_2019_-_Vista_lateral.jpg)',
+                    backgroundImage: `url(${validate})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundColor: (t) =>
                         t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -143,7 +136,7 @@ export default function Login() {
                 >
 
                     <Typography component="h1" variant="h5">
-                        Iniciar sesión
+                        Valida tu correo electronico
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
@@ -159,7 +152,7 @@ export default function Login() {
                             autoFocus
                             value={codigo}
                             onChange={(e) => handleInputChange(e, setCodigo)} // Cambiar setEmail a setCodigo
-                            inputProps={{ inputMode: 'email', pattern: '*[unmsm.edu.pe]' }} // Solo permite números
+                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Solo permite números
                             sx={{
                                 '& .MuiOutlinedInput-root': {
                                     '&.Mui-focused fieldset': {
@@ -174,8 +167,8 @@ export default function Login() {
                             }}
                         />
                         <TextField
-                            error={dni.length === 0}
-                            helperText={dni.length === 0 ? "DNI no válido" : ""}
+                            error={dni.length > 0 && dni.length < 8}
+                            helperText={dni.length > 0 && dni.length < 8 ? "DNI no válido" : ""}
                             margin="normal"
                             required
                             fullWidth
@@ -200,14 +193,6 @@ export default function Login() {
                                 },
                             }}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary"
-                                checked={isMod}
-                                onChange={handleCheckboxChange}
-                            />}
-                            label="Ingresar como moderador"
-                            sx={{ width: '100%' }}
-                        />
                         <Button
                             type="submit"
                             fullWidth
@@ -218,9 +203,6 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link to="/Registrar">
-                                    {"No tienes una cuenta? Regístrate"}
-                                </Link>
                             </Grid>
                         </Grid>
                     </Box>
