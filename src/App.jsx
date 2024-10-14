@@ -13,6 +13,7 @@ import Salones from './pages/Salones/Salones';
 import Auditorio from './pages/Auditorio/Auditorio';
 import Canchita from './pages/Canchita/Canchita';
 import Forms from './pages/Formulario/Formulario';
+import Validate from './components/login/Validate';
 import RectisListas from './pages/Rectis/RectisListas';
 import Asignaciones_page from "./pages/Asignacion/Page_asignación";
 function App() {
@@ -20,7 +21,8 @@ function App() {
     <Router>
       <div className='App'>
         <Routes>
-          <Route path='/login' element={<Login />} />      
+          <Route path='/login' element={<Login />} />
+          <Route path='/validate' element={<Validate />} />
           <Route path='/*' element={
             <>
               <ResponsiveAppBar />

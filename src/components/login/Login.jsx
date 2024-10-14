@@ -139,6 +139,7 @@ export default function Login() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
+
                             error={correo.length === 0}
                             helperText={correo.length === 0 ? "Correo no válido" : ""}
                             margin="normal"
