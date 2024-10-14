@@ -6,31 +6,31 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import './CardPrincipal.css'; 
+import { useNavigate } from 'react-router-dom';
 
 export const cardData = [
     {
         image: 'src/pages/Reserva/assets/reserva1.jpg',
         title: 'Reserva de Cancha',
         description: 'Reserva la cancha sintetica de la FISI, para jugar con tus compañeros o amigos en tus tiempos libres',
-    },
-    {
-        image: 'src/pages/Reserva/assets/reserva2.jpg',
-        title: 'Reserva de Capilla Fisiana',
-        description: 'Reserva de la capilla para eventos y ceremonias religiosas o culturales',
+        redirect:"/reservar/canchita"
     },
     {
         image: 'src/pages/Reserva/assets/reserva3.jpg',
         title: 'Reserva de Auditorio',
         description: 'Reserva el auditorio de la FISI para tus exposiciones o eventos',
+        redirect:"/reservar/auditorio"
     },
     {
         image: 'src/pages/Reserva/assets/reserva4.jpg',
         title: 'Reserva de Salones',
         description: 'Reserva un salón de la FISI para tus clases, reuniones o eventos',
+        redirect: "/reservar/salones"
     },
 ];
 
 export default function CardPrincipal() {
+    const navigate = useNavigate();
     return (
         <div className="card-container"> 
             {cardData.map((card, index) => (
@@ -53,6 +53,11 @@ export default function CardPrincipal() {
                             {card.description} 
                         </Typography>
                         <Button
+                            onClick={
+                                ()=>{
+                                    navigate(card.redirect)
+                                }
+                            }
                             variant="outlined"
                             size= "large"
                             sx={{
