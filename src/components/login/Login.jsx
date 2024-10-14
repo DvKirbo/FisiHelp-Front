@@ -27,8 +27,8 @@ const loginMod = url + '/auth/login-moderator';
 export default function Login() {
     const [isMod, setIsMod] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
-    const [codigo, setCodigo] = useState(""); // Cambiar email a codigo
-    const [dni, setDni] = useState(""); // Cambiar password a dni
+    const [correo, setCorreo] = useState(""); // Cambiar código a correo
+    const [contraseña, setContraseña] = useState(""); // Cambiar dni a contraseña
     const [error, setError] = useState(false);
 
     const handleCloseAlert = () => {
@@ -40,10 +40,6 @@ export default function Login() {
         setIsMod(event.target.checked);
     };
 
-    const handleErrorAlert = () => {
-        setOpenAlert(false);
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const urlToUse = isMod ? loginMod : loginUrl;
@@ -54,8 +50,8 @@ export default function Login() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                codigo: codigo ? codigo : "No ingresado", // Cambiar email a codigo
-                dni: dni ? dni : "No ingresado" // Cambiar password a dni
+                correo: correo ? correo : "No ingresado", // Cambiar código a correo
+                contraseña: contraseña ? contraseña : "No ingresado" // Cambiar dni a contraseña
             })
         }).then(res => res.json()).then(data => {
             console.log(data);
@@ -64,7 +60,7 @@ export default function Login() {
                 const user = {
                     id: data.user.id,
                     nombre: data.user.nombre,
-                    codigo: data.user.codigo, // Cambiar correo a codigo
+                    correo: data.user.correo, // Cambiar código a correo
                     token: data.token
                 }
                 window.localStorage.setItem(isMod ? 'UW-mod-logged-session' : 'UW-logged-session', JSON.stringify(user));
@@ -76,8 +72,8 @@ export default function Login() {
             } else {
                 setError(true);
                 setOpenAlert(true);
-                setCodigo(""); // Reiniciar codigo
-                setDni(""); // Reiniciar dni
+                setCorreo(""); // Reiniciar correo
+                setContraseña(""); // Reiniciar contraseña
             }
         }).catch(err => {
             console.log(err);
@@ -85,18 +81,14 @@ export default function Login() {
     };
 
     const handleInputChange = (e, setter) => {
-        const value = e.target.value;
-        // Solo permite números y limita a 8 dígitos
-        if (/^\d*$/.test(value) && value.length <= 8) { 
-            setter(value);
-        }
+        setter(e.target.value);
     };
 
     return (
         <Grid container component="main" sx={{ height: { md: '100vh', xs: '100vh' } }}>
             <Dialog
                 open={openAlert}
-                onClose={error ? handleErrorAlert : handleCloseAlert}
+                onClose={error ? () => setOpenAlert(false) : handleCloseAlert}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
@@ -104,7 +96,7 @@ export default function Login() {
                 <DialogTitle id="alert-dialog-title">{error ? message[1] : message[0]}</DialogTitle>
 
                 <DialogActions>
-                    <Button onClick={error ? handleErrorAlert : handleCloseAlert} color="primary" autoFocus>
+                    <Button onClick={error ? () => setOpenAlert(false) : handleCloseAlert} color="primary" autoFocus>
                         Continuar
                     </Button>
                 </DialogActions>
@@ -147,58 +139,33 @@ export default function Login() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
-                            error={codigo.length > 0 && codigo.length < 8}
-                            helperText={codigo.length > 0 && codigo.length < 8 ? "Código no válido" : ""}
+
+                            error={correo.length === 0}
+                            helperText={correo.length === 0 ? "Correo no válido" : ""}
                             margin="normal"
                             required
                             fullWidth
-                            id="codigo" // Cambiar id a codigo
-                            label="Código" // Cambiar label a codigo
-                            name="codigo" // Cambiar name a codigo
-                            autoComplete="codigo" // Cambiar autoComplete a codigo
+                            id="correo" // Cambiar id a correo
+                            label="Correo" // Cambiar label a correo
+                            name="correo" // Cambiar name a correo
+                            autoComplete="email" // Cambiar autoComplete a email
                             autoFocus
-                            value={codigo}
-                            onChange={(e) => handleInputChange(e, setCodigo)} // Cambiar setEmail a setCodigo
-                            inputProps={{ inputMode: 'email', pattern: '*[unmsm.edu.pe]' }} // Solo permite números
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#66bb6a',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    '&.Mui-focused': {
-                                        color: '#66bb6a'
-                                    },
-                                },
-                            }}
+                            value={correo}
+                            onChange={(e) => handleInputChange(e, setCorreo)} // Cambiar setCodigo a setCorreo
                         />
                         <TextField
-                            error={dni.length === 0}
-                            helperText={dni.length === 0 ? "DNI no válido" : ""}
+                            error={contraseña.length === 0}
+                            helperText={contraseña.length === 0 ? "Contraseña no válida" : ""}
                             margin="normal"
                             required
                             fullWidth
-                            name="dni" // Cambiar name a dni
-                            label="DNI" // Cambiar label a dni
-                            type="text"
-                            id="dni" // Cambiar id a dni
-                            autoComplete="current-dni" // Cambiar autoComplete a current-dni
-                            value={dni}
-                            onChange={(e) => handleInputChange(e, setDni)} // Cambiar setPassword a setDni
-                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Solo permite números
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#66bb6a',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    '&.Mui-focused': {
-                                        color: '#66bb6a'
-                                    },
-                                },
-                            }}
+                            name="contraseña" // Cambiar name a contraseña
+                            label="Contraseña" // Cambiar label a contraseña
+                            type="password" // Cambiar type a password
+                            id="contraseña" // Cambiar id a contraseña
+                            autoComplete="current-password" // Cambiar autoComplete a current-password
+                            value={contraseña}
+                            onChange={(e) => handleInputChange(e, setContraseña)} // Cambiar setDni a setContraseña
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary"

@@ -4,6 +4,7 @@ import Login from './components/login/Login';
 import ResponsiveAppBar from './components/Navbar/ResponsiveAppBar';
 import UnayoeReserv from './pages/Unayoe/UnayoeReserv';
 import HomePage from './pages/HomePage'; 
+import Asignaciones from "./pages/Asignacion/Asignaciones";
 import Footer from './components/Footer';
 import Reserva from './pages/Reserva/Reserva';
 import Chatbot from './components/Chatbot/Chatbot';
@@ -13,6 +14,8 @@ import Auditorio from './pages/Auditorio/Auditorio';
 import Canchita from './pages/Canchita/Canchita';
 import Forms from './pages/Formulario/Formulario';
 import Validate from './components/login/Validate';
+import RectisListas from './pages/Rectis/RectisListas';
+import Asignaciones_page from "./pages/Asignacion/Page_asignación";
 function App() {
   return (
     <Router>
@@ -32,7 +35,10 @@ function App() {
                   <Route path="/unayoe" element={<UnayoeReserv />} />
                   <Route path="/rectificaciones" element={<Rectis />} />
                   <Route path="/formulario" element={<Forms />} />
+                  <Route path="/rectis-listas" element={<RectisListas />} />
 
+                  <Route path="/asignaciones" element={<Asignaciones_page/>} />
+                  <Route path="/asignaciones/tabla" element={<Asignaciones/>} />
                   <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>
               <Chatbot />
