@@ -11,6 +11,7 @@ import Rectis from './pages/Rectis/Rectificaciones';
 import Salones from './pages/Salones/Salones';
 import Auditorio from './pages/Auditorio/Auditorio';
 import Canchita from './pages/Canchita/Canchita';
+import Forms from './pages/Formulario/Formulario';
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/reservar/canchita" element={<Canchita />} />
                   <Route path="/unayoe" element={<UnayoeReserv />} />
                   <Route path="/rectificaciones" element={<Rectis />} />
+                  <Route path="/formulario" element={<Forms />} />
 
                   <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>
