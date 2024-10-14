@@ -2,7 +2,7 @@ import './Chatbot.css';
 
 function Chatbot(){
     const handleClick = () => {
-        window.open("https://www.google.com", "_blank");
+        window.open("https://api.whatsapp.com/send/?phone=930297013&text&type=phone_number&app_absent=0", "_blank");
     };
 
     return (

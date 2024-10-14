@@ -1,8 +1,7 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Box } from '@mui/material';
 
-import image1 from '/home/Ric/FisiHelp-Front/src/assets/logofisi.png';
+import image1 from './assets/logo.jpeg';
 
 export default function AsignacionesPage() {
   const navigate = useNavigate();

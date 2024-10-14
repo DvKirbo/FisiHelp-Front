@@ -1,5 +1,3 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,22 +7,23 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
-const url = "https://innovatech-0rui.onrender.com";
-const loginUrl = url + '/auth/login';
+const url = "http://127.0.0.1:3000/alumnos/auth";
+const loginUrl = 'http://127.0.0.1:3000/alumnos/login';
 const loginMod = url + '/auth/login-moderator';
 
+
 export default function Login() {
+    const navigate  = useNavigation();
+    
     const [isMod, setIsMod] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [correo, setCorreo] = useState(""); // Cambiar código a correo
@@ -33,7 +32,7 @@ export default function Login() {
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
-        window.location.href = '/';
+        navigate('/');
     }
 
     const handleCheckboxChange = (event) => {
@@ -42,43 +41,43 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const urlToUse = isMod ? loginMod : loginUrl;
-
-        fetch(urlToUse, {
+        console.log(correo, contraseña);
+        
+        fetch(loginUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                correo: correo ? correo : "No ingresado", // Cambiar código a correo
-                contraseña: contraseña ? contraseña : "No ingresado" // Cambiar dni a contraseña
+                email: correo,
+                password: contraseña
             })
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            if (data.status === 200) {
-                setError(false);
-                const user = {
-                    id: data.user.id,
-                    nombre: data.user.nombre,
-                    correo: data.user.correo, // Cambiar código a correo
-                    token: data.token
-                }
-                window.localStorage.setItem(isMod ? 'UW-mod-logged-session' : 'UW-logged-session', JSON.stringify(user));
-                if (isMod) {
-                    window.location.href = '/moderador';
-                } else {
-                    setOpenAlert(true);
-                }
-            } else {
-                setError(true);
-                setOpenAlert(true);
-                setCorreo(""); // Reiniciar correo
-                setContraseña(""); // Reiniciar contraseña
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-    };
+        }).then(res => 
+            res.json()
+        ).then(data => {
+            console.log(data.student)
+       
+            setOpenAlert(true);
+            window.localStorage.setItem("AlumnoFisi", JSON.stringify({
+                codigo: data.student.codigo,
+                nombre: data.student.nombre,
+                apellido_mat: data.student.apellido_mat,
+                apellido_pat: data.student.apellido_pat,
+                DNI: data.student.DNI,
+                ponderado: data.student.ponderado,
+                email: data.student.email,
+                observado: data.student.observados
+            }))
+            setOpenAlert(true);
+             setError(false);
+             console.log("guardadp")
+        }).catch(err =>{
+            console.log(err)
+            setError(true);
+        })
+        
+        
+    }
 
     const handleInputChange = (e, setter) => {
         setter(e.target.value);
@@ -172,7 +171,7 @@ export default function Login() {
                                 checked={isMod}
                                 onChange={handleCheckboxChange}
                             />}
-                            label="Ingresar como moderador"
+                            label="Ingresar como trabajador"
                             sx={{ width: '100%' }}
                         />
                         <Button
@@ -185,7 +184,7 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link to="/Registrar">
+                                <Link to="/validate">
                                     {"No tienes una cuenta? Regístrate"}
                                 </Link>
                             </Grid>
