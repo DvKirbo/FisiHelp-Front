@@ -8,17 +8,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { TableVirtuoso } from 'react-virtuoso';
-import Chance from 'chance';
-import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select, Typography } from '@mui/material';
 import { useState, useMemo } from 'react';
-
+import { TableVirtuoso } from 'react-virtuoso';
+import TextField from '@mui/material/TextField';
+import Chance from 'chance';
 const chance = new Chance(42);
 
-// Función para generar datos aleatorios con una fecha aleatoria
 function createData(id) {
   return {
     id,
@@ -29,55 +31,61 @@ function createData(id) {
     cursoSalida: `Curso ${chance.integer({ min: 1, max: 5 })}`,
     cursoEntrada: `Curso ${chance.integer({ min: 1, max: 5 })}`,
     carrera: chance.pickone(['Ingeniería de Software', 'Ingeniería de Sistemas']),
-    fecha: chance.date({ year: 2024, month: 9, day: 15 }).toISOString(), // Fecha aleatoria
+    fecha: chance.date({ year: 2024, month: 9, day: 15 }).toISOString(),
+    tipo: chance.pickone(['Salida', 'Entrada', 'Cambio']) 
   };
 }
 
 const columns = [
   {
-    width: 140,
+    width: 110, 
     label: 'Apellidos',
     dataKey: 'apellido',
   },
   {
-    width: 140,
+    width: 110, 
     label: 'Nombre',
     dataKey: 'nombre',
   },
   {
-    width: 100,
+    width: 80, 
     label: 'Código',
     dataKey: 'code',
     numeric: true,
   },
   {
-    width: 140,
-    label: 'Promedio Ponderado',
+    width: 110, 
+    label: 'Promedio',
     dataKey: 'promedio',
     numeric: true,
   },
   {
-    width: 140,
+    width: 110, 
     label: 'Curso del que sale',
     dataKey: 'cursoSalida',
   },
   {
-    width: 140,
+    width: 110,
     label: 'Curso al que entra',
     dataKey: 'cursoEntrada',
   },
   {
-    width: 200,
+    width: 120, 
     label: 'Carrera',
     dataKey: 'carrera',
   },
   {
-    width: 200,
+    width: 130, 
     label: 'Fecha y Hora ',
     dataKey: 'fecha',
   },
   {
-    width: 200,
+    width: 80, 
+    label: 'Tipo',
+    dataKey: 'tipo',
+  },
+  {
+    width: 250,
     label: 'Acciones',
     dataKey: 'actions',
   },
@@ -115,7 +123,7 @@ function fixedHeaderContent() {
   );
 }
 
-function rowContent(_index, row) {
+function rowContent(_index, row, handleOpenDialog) {
   return (
     <React.Fragment>
       {columns.slice(0, -1).map((column) => (
@@ -125,7 +133,7 @@ function rowContent(_index, row) {
           sx={{ padding: '10px' }}
         >
           {column.dataKey === 'fecha'
-            ? new Date(row[column.dataKey]).toLocaleString() // Formato legible de la fecha
+            ? new Date(row[column.dataKey]).toLocaleString()
             : row[column.dataKey]}
         </TableCell>
       ))}
@@ -139,8 +147,16 @@ function rowContent(_index, row) {
         <Button
           variant="contained"
           color="error"
+          sx={{ marginRight: 1 }}
         >
           Rechazar
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => handleOpenDialog(row.id)}
+          sx={{ backgroundColor: '#FFA500' }}
+        >
+          Ver
         </Button>
       </TableCell>
     </React.Fragment>
@@ -149,11 +165,26 @@ function rowContent(_index, row) {
 
 export default function Rectificaciones() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [orderBy, setOrderBy] = useState('fecha'); // Ordenar por fecha por defecto
-  const [orderDirection, setOrderDirection] = useState('desc'); // Ascendente o descendente
+  const [orderBy, setOrderBy] = useState('fecha');
+  const [orderDirection, setOrderDirection] = useState('desc');
+  const [tipoFilter, setTipoFilter] = useState(''); 
   const [filteredRows, setFilteredRows] = useState(rows);
+  const [open, setOpen] = useState(false);
+  const [justification, setJustification] = useState('');
+  const [selectedRowId, setSelectedRowId] = useState(null);
 
-  // Manejar búsqueda y filtros combinados
+  const handleOpenDialog = (id) => {
+    setSelectedRowId(id);
+    const randomJustification = chance.paragraph({ sentences: 3 });
+    setJustification(randomJustification);
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
+    setJustification('');
+  };
+
   React.useEffect(() => {
     const search = searchQuery.toLowerCase();
 
@@ -165,12 +196,14 @@ export default function Rectificaciones() {
           row.carrera.toLowerCase().includes(search) ||
           row.fecha.toLowerCase().includes(search);
 
-        return matchesSearch;
+        const matchesTipo =
+          tipoFilter === '' || row.tipo === tipoFilter; 
+
+        return matchesSearch && matchesTipo; 
       })
     );
-  }, [searchQuery]);
+  }, [searchQuery, tipoFilter]);
 
-  // Manejar ordenamiento
   const sortedRows = useMemo(() => {
     let sorted = [...filteredRows];
     
@@ -178,16 +211,16 @@ export default function Rectificaciones() {
       sorted = sorted.sort((a, b) => a.carrera.localeCompare(b.carrera));
     } else if (orderBy === 'cursoEntrada') {
       sorted = sorted.sort((a, b) => a.cursoEntrada.localeCompare(b.cursoEntrada));
-    } else if (orderBy === 'cursoSalida') { // Agregamos el orden por curso de salida
+    } else if (orderBy === 'cursoSalida') {
       sorted = sorted.sort((a, b) => a.cursoSalida.localeCompare(b.cursoSalida));
     } else if (orderBy === 'promedio') {
-      sorted = sorted.sort((a, b) => b.promedio - a.promedio); // De mayor a menor
+      sorted = sorted.sort((a, b) => b.promedio - a.promedio);
     } else if (orderBy === 'fecha') {
       sorted = sorted.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
     }
 
     if (orderDirection === 'asc') {
-      return sorted.reverse(); // Cambiar a orden ascendente si se selecciona
+      return sorted.reverse();
     }
 
     return sorted;
@@ -229,8 +262,8 @@ export default function Rectificaciones() {
           <MenuItem value="fecha">Orden por Fecha (Defecto)</MenuItem>
           <MenuItem value="carrera">Carrera</MenuItem>
           <MenuItem value="cursoEntrada">Curso de Entrada</MenuItem>
-          <MenuItem value="cursoSalida">Curso de Salida</MenuItem> {/* Nueva opción */}
-          <MenuItem value="promedio">Promedio Ponderado</MenuItem>
+          <MenuItem value="cursoSalida">Curso de Salida</MenuItem>
+          <MenuItem value="promedio">Promedio</MenuItem>
         </Select>
         <Select
           value={orderDirection}
@@ -239,23 +272,41 @@ export default function Rectificaciones() {
           variant="outlined"
           sx={{ minWidth: 180 }}
         >
-          <MenuItem value="asc">Ascendente</MenuItem>
-          <MenuItem value="desc">Descendente</MenuItem>
+          <MenuItem value="desc">Orden Descendente</MenuItem>
+          <MenuItem value="asc">Orden Ascendente</MenuItem>
+        </Select>
+        <Select
+          value={tipoFilter}
+          onChange={(e) => setTipoFilter(e.target.value)}
+          displayEmpty
+          variant="outlined"
+          sx={{ minWidth: 180 }}
+        >
+          <MenuItem value="">Todos los tipos</MenuItem>
+          <MenuItem value="Entrada">Entradas</MenuItem>
+          <MenuItem value="Salida">Salidas</MenuItem>
+          <MenuItem value="Cambio">Cambios</MenuItem>
         </Select>
       </Box>
-      <Paper sx={{
-        height: 900,
-        width: '100%',
-        boxShadow: '0px 3px 15px rgba(0,0,0,02)',
-        borderRadius: 4
-      }}>
-        <TableVirtuoso
-          data={sortedRows}
-          components={VirtuosoTableComponents}
-          fixedHeaderContent={fixedHeaderContent}
-          itemContent={rowContent}
-        />
-      </Paper>
+
+      <TableVirtuoso
+        components={VirtuosoTableComponents}
+        totalCount={sortedRows.length}
+        fixedHeaderContent={fixedHeaderContent}
+        itemContent={(index) => rowContent(index, sortedRows[index], handleOpenDialog)}
+      />
+
+      <Dialog open={open} onClose={handleCloseDialog}>
+        <DialogTitle>Justificación</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">{justification}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cerrar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
