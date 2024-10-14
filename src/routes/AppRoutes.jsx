@@ -5,6 +5,8 @@ import Login from '../components/login/Login';
 import Reserva from '../pages/Reserva/Reserva';
 import Rectis from '../pages/Rectis/Rectificaciones';
 import Forms from '../pages/Formulario/Formulario';
+import Asignaciones from "../pages/Asignacion/Asignaciones";
+import Asignaciones_page from "../pages/Asignacion/Page_asignación";
 function AppRoutes() {
   return (
     <Routes>
@@ -15,6 +17,8 @@ function AppRoutes() {
       <Route path="/reservas" element={<Reserva />} />
       <Route path="/rectificaciones" element={<Rectis />} />
       <Route path="/formulario" element={<Forms />} />
+      <Route path="/asignaciones/tabla" element={<Asignaciones/>} />
+      <Route path="/asignaciones" element={<Asignaciones_page/>} />
 
 
     </Routes>

@@ -21,7 +21,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import PestControlRodentIcon from '@mui/icons-material/PestControlRodent';
 
-const pages = ['Inicio','Reservar', 'Unayoe'];
+const pages = ['Inicio','Reservar', 'Unayoe', 'Asignaciones'];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -60,6 +60,9 @@ function ResponsiveAppBar() {
     }
     if (page === 'Reservas') {
       navigate('/reservas'); 
+    }
+    if (page === 'Asignaciones') {
+      navigate('/asignaciones'); 
     }
   };
 
