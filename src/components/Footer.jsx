@@ -1,6 +1,7 @@
 import { Box, Typography, Divider, IconButton } from '@mui/material';
 import { Facebook, Instagram, YouTube } from '@mui/icons-material';
 import unmsmLogo from '../assets/unmsm.png'; 
+import logofisi from '../assets/logofisi.png';
 import './Footer.css';
 
 const Footer = () => {
@@ -14,7 +15,14 @@ const Footer = () => {
             alt="Logo UNMSM"
             sx={{ width: { xs: '100px', md: '150px' }, height: 'auto' }} 
           />
+          <Box
+            component="img"
+            src={logofisi} 
+            alt="Logo FISI"
+            sx={{ width: { xs: '100px', md: '150px' }, height: 'auto' }} 
+          />
           <Box sx={{ ml: 2, textAlign: 'start' }}>
+            
             <Typography variant="h6" sx={{ color: 'white' }}>
               Facultad de Ingeniería de Sistemas e Informática
             </Typography>
