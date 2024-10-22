@@ -40,7 +40,7 @@ export default function Validate() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(import.meta.env.VITE_VALIDATE_URL, {
+        fetch("https://fisihelp-back.onrender.com/alumnos/auth", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
