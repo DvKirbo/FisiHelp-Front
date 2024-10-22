@@ -143,7 +143,7 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <Button onClick={() => navigate('/login')} sx={{ p: 0, color: 'white' }}>
+              <Button onClick={() => navigate('/validate')} sx={{ p: 0, color: 'white' }}>
                 Iniciar Sesión
               </Button>
             </Tooltip>
